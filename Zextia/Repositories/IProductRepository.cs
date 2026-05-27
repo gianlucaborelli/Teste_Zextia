@@ -11,5 +11,6 @@ namespace Zextia.Repositories
         Product GetByIdWithSupplements(Guid id);
         IEnumerable<Product> GetAllWithSupplements();
         void RemoveSupplement(ProductSupplement supplement);
+        bool DeleteProduct(Guid productId, out string message);
     }
 }

@@ -122,13 +122,13 @@ namespace Zextia.Services
         {
             try
             {
-                var product = _productRepository.GetById(id);
-                if (product == null)
-                    return ServiceResult.Fail("Produto não encontrado");
+                string message;
+                bool success = _productRepository.DeleteProduct(id, out message);
 
-                _productRepository.Remove(product);
-                _productRepository.SaveChanges();
-                return ServiceResult.Ok("Produto excluído com sucesso");
+                if (success)
+                    return ServiceResult.Ok(message);
+                else
+                    return ServiceResult.Fail(message);
             }
             catch (Exception ex)
             {
